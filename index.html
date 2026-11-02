@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090708" />
+  <meta name="description" content="Debates: una comunidad para discutir ideas, poner argumentos a prueba y descubrir nuevas perspectivas. Únete a nuestro servidor de Discord." />
+  <title>DEBATES — Que hablen los argumentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090708;
+      --panel: rgba(24, 14, 17, .78);
+      --red: #ff263f;
+      --red2: #c90f2b;
+      --white: #f7f3f4;
+      --muted: #b8aeb2;
+      --line: rgba(255, 38, 63, .23);
+      --font: "DM Sans", sans-serif;
+      --display: "Space Grotesk", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--white); background: var(--bg); font-family: var(--font);
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(ellipse at 80% 15%, rgba(156, 10, 34, .18), transparent 38%),
+        radial-gradient(ellipse at 12% 45%, rgba(255, 38, 63, .08), transparent 32%),
+        linear-gradient(180deg, #090708 0%, #10090c 55%, #080607 100%);
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: .17;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+    .nav {
+      height: 84px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07); position: relative; z-index: 5;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; letter-spacing: .13em; }
+    .brand-mark {
+      width: 39px; height: 39px; display: grid; place-items: center; border-radius: 12px;
+      color: white; background: linear-gradient(145deg, #ff4157, #a90725);
+      box-shadow: 0 0 28px rgba(255,38,63,.3);
+    }
+    .brand-mark svg { width: 23px; height: 23px; }
+    .navlinks { display: flex; gap: 30px; color: #c9bfc3; font-size: 13px; }
+    .navlinks a { transition: color .2s; }
+    .navlinks a:hover { color: white; }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 999px;
+      font-weight: 700; transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .nav-cta { border: 1px solid rgba(255,38,63,.6); padding: 12px 18px; font-size: 13px; background: rgba(255,38,63,.08); }
+    .nav-cta:hover { box-shadow: 0 0 26px rgba(255,38,63,.22); transform: translateY(-2px); }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.04fr .96fr; align-items: center; gap: 20px; padding: 72px 0 64px; position: relative; }
+    .hero::after {
+      content: ""; position: absolute; width: 500px; height: 500px; right: 0; top: 40px; border-radius: 50%;
+      background: rgba(255, 20, 52, .09); filter: blur(70px); pointer-events: none;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #ff6375; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; height: 1px; width: 28px; background: var(--red); box-shadow: 0 0 10px var(--red); }
+    h1 { font-family: var(--display); font-size: clamp(54px, 7.4vw, 98px); line-height: .91; letter-spacing: -.075em; margin: 24px 0 26px; font-weight: 700; }
+    h1 span { display: block; color: var(--red); text-shadow: 0 0 35px rgba(255,38,63,.22); }
+    .lead { max-width: 510px; color: #c9bec2; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.75; margin: 0 0 30px; }
+    .lead strong { color: white; font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; align-items: center; }
+    .button { padding: 16px 23px; font-size: 14px; }
+    .button.primary { background: linear-gradient(110deg, #ff344d, #d90f31); box-shadow: 0 8px 32px rgba(255,38,63,.23), inset 0 1px 0 rgba(255,255,255,.28); }
+    .button.primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,38,63,.38); }
+    .button.secondary { border: 1px solid rgba(255,255,255,.15); color: #e8dfe2; background: rgba(255,255,255,.035); }
+    .button.secondary:hover { border-color: rgba(255,38,63,.55); transform: translateY(-3px); }
+    .button svg { width: 19px; height: 19px; }
+    .proof { display: flex; align-items: center; gap: 10px; color: #91858a; font-size: 12px; margin-top: 22px; }
+    .proof-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff334c; box-shadow: 0 0 12px #ff334c; }
+    .visual { min-height: 450px; position: relative; display: grid; place-items: center; z-index: 1; }
+    .orbit { position: absolute; width: min(440px, 100%); aspect-ratio: 1; border: 1px solid rgba(255,38,63,.2); border-radius: 50%; transform: rotate(-22deg) scaleY(.72); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; inset: 24px; border: 1px solid rgba(255,38,63,.12); border-radius: 50%; }
+    .orbit::after { inset: 55px; border-style: dashed; opacity: .5; }
+    .visual-core {
+      width: min(350px, 84%); aspect-ratio: .9; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,72,94,.38); border-radius: 48% 48% 26px 26px;
+      background: linear-gradient(145deg, rgba(49,14,22,.88), rgba(13,9,11,.92) 64%);
+      box-shadow: inset 0 0 60px rgba(255,38,63,.08), 0 0 80px rgba(255,38,63,.1);
+      overflow: hidden;
+    }
+    .visual-core::before { content: ""; position: absolute; width: 230px; height: 230px; border-radius: 50%; background: #f71d3a; filter: blur(90px); opacity: .22; top: 30px; }
+    .laurel { position: absolute; top: 28px; color: #ff465d; font-size: 27px; letter-spacing: .35em; }
+    .monogram { font-family: var(--display); font-size: clamp(120px, 18vw, 190px); line-height: .9; font-weight: 700; letter-spacing: -.13em; color: #fff2f4; text-shadow: 0 0 3px white, 0 0 35px rgba(255,38,63,.55); transform: translateX(-8px); }
+    .core-label { font-size: 10px; letter-spacing: .32em; color: #ff7180; margin-top: 22px; font-weight: 700; }
+    .floating {
+      position: absolute; display: flex; align-items: center; gap: 10px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.13);
+      background: rgba(19,12,15,.83); backdrop-filter: blur(12px); border-radius: 13px; box-shadow: 0 15px 45px rgba(0,0,0,.3); font-size: 12px; color: #e9dfe2;
+    }
+    .floating .mini-icon { width: 29px; height: 29px; display: grid; place-items: center; border-radius: 9px; color: #ff5369; background: rgba(255,38,63,.13); font-weight: 700; }
+    .float-one { top: 75px; left: -5px; }
+    .float-two { bottom: 72px; right: -5px; }
+    .float-three { bottom: 8px; left: 22px; }
+    .section { padding: 76px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 32px; }
+    .section-kicker { color: #ff5369; font-size: 11px; text-transform: uppercase; letter-spacing: .2em; font-weight: 700; }
+    h2 { font: 700 clamp(30px, 4vw, 48px)/1.05 var(--display); letter-spacing: -.055em; margin: 12px 0 0; }
+    .section-head p { max-width: 390px; margin: 0; color: #a99da2; line-height: 1.7; font-size: 14px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card {
+      position: relative; padding: 26px 23px 25px; min-height: 225px; border: 1px solid var(--line); border-radius: 19px;
+      background: linear-gradient(145deg, rgba(35,18,23,.76), rgba(16,11,13,.72)); overflow: hidden; transition: transform .25s, border-color .25s;
+    }
+    .card::after { content: ""; position: absolute; width: 90px; height: 90px; right: -45px; top: -45px; border-radius: 50%; background: var(--red); filter: blur(45px); opacity: .17; }
+    .card:hover { transform: translateY(-6px); border-color: rgba(255,38,63,.62); }
+    .card-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; color: #ff5268; border: 1px solid rgba(255,38,63,.28); background: rgba(255,38,63,.09); margin-bottom: 25px; }
+    .card-icon svg { width: 23px; height: 23px; }
+    .card h3 { font: 600 17px var(--display); margin: 0 0 10px; }
+    .card p { color: #a99da2; font-size: 13px; line-height: 1.7; margin: 0; }
+    .manifesto { padding: 24px 0 92px; }
+    .manifesto-inner {
+      position: relative; overflow: hidden; border-radius: 25px; padding: 55px 58px; border: 1px solid rgba(255,38,63,.32);
+      background: radial-gradient(ellipse at 0% 100%, rgba(255,38,63,.17), transparent 45%), linear-gradient(110deg, rgba(32,13,19,.95), rgba(14,9,11,.95));
+      display: flex; align-items: center; justify-content: space-between; gap: 25px;
+    }
+    .manifesto-inner::after { content: "≠"; position: absolute; right: 5%; top: -68px; font: 700 270px var(--display); color: rgba(255,38,63,.06); transform: rotate(-14deg); }
+    .manifesto-copy { position: relative; z-index: 1; }
+    .manifesto-copy h2 { max-width: 650px; font-size: clamp(34px, 5vw, 58px); }
+    .manifesto-copy h2 span { color: var(--red); }
+    .manifesto-copy p { color: #b9aeb2; margin: 18px 0 0; line-height: 1.7; max-width: 550px; }
+    .manifesto-action { position: relative; z-index: 1; flex-shrink: 0; }
+    footer { border-top: 1px solid rgba(255,255,255,.07); padding: 25px 0 32px; color: #82777c; font-size: 12px; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer-brand { color: #e9e0e3; font-family: var(--display); letter-spacing: .15em; font-weight: 700; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a:hover { color: white; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 850px) {
+      .navlinks { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 66px; }
+      .hero-copy { text-align: center; }
+      .eyebrow, .actions, .proof { justify-content: center; }
+      .lead { margin-left: auto; margin-right: auto; }
+      .visual { min-height: 420px; margin-top: -10px; }
+      .float-one { left: 4%; } .float-two { right: 3%; }
+      .section-head { align-items: start; flex-direction: column; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .manifesto-inner { padding: 42px 32px; align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 30px, 1160px); }
+      .nav { height: 72px; }
+      .brand { font-size: 13px; }
+      .brand-mark { width: 35px; height: 35px; }
+      .nav-cta { padding: 10px 12px; font-size: 11px; }
+      .hero { padding: 56px 0 35px; min-height: auto; }
+      h1 { font-size: clamp(54px, 17vw, 78px); }
+      .lead { font-size: 15px; }
+      .button { width: 100%; }
+      .actions { flex-direction: column; }
+      .visual { min-height: 340px; }
+      .visual-core { width: 270px; }
+      .orbit { width: 320px; }
+      .monogram { font-size: 145px; }
+      .float-one { top: 22px; left: 0; } .float-two { bottom: 52px; right: 0; } .float-three { bottom: -4px; left: 0; }
+      .floating { padding: 9px 10px; font-size: 10px; }
+      .section { padding: 55px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+      .card-icon { margin-bottom: 18px; }
+      .manifesto { padding-bottom: 60px; }
+      .manifesto-inner { padding: 32px 24px; }
+      .footer-row { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="#" aria-label="Debates, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4.5h16A2.5 2.5 0 0 1 22.5 7v9a2.5 2.5 0 0 1-2.5 2.5h-5.2L10 22v-3.5H4A2.5 2.5 0 0 1 1.5 16V7A2.5 2.5 0 0 1 4 4.5Z"/><path d="M6 9h12M6 13h8" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </span>
+      <span>DEBATES<span style="color:var(--red)">.</span></span>
+    </a>
+    <nav class="navlinks" aria-label="Navegación principal">
+      <a href="#concepto">El concepto</a>
+      <a href="#experiencia">Qué encontrarás</a>
+      <a href="#unete">Únete</a>
+    </nav>
+    <a class="nav-cta" href="https://discord.gg/uCxdbMETf" target="_blank" rel="noopener noreferrer">Entrar al Discord <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="concepto">
+      <div class="hero-copy">
+        <div class="eyebrow">Ideas fuertes. Argumentos mejores.</div>
+        <h1>NO VENGAS<br>A GANAR.<span>VENÍ A</span><span>DEBATIR.</span></h1>
+        <p class="lead">Bienvenido a <strong>el mejor servidor de debates</strong>: un espacio para cuestionar ideas, defender tus argumentos y descubrir perspectivas que no habías considerado.</p>
+        <div class="actions">
+          <a class="button primary" href="https://discord.gg/uCxdbMETf" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.7 5.1a18 18 0 0 0-4.4-1.4l-.5 1a16.5 16.5 0 0 0-5.6 0l-.5-1a18 18 0 0 0-4.4 1.4C1.5 9.3.7 13.4 1.1 17.4a18 18 0 0 0 5.4 2.7l1.2-2a11 11 0 0 1-1.9-.9l.5-.4a12.8 12.8 0 0 0 11.4 0l.5.4a11 11 0 0 1-1.9.9l1.2 2a18 18 0 0 0 5.4-2.7c.5-4.6-.8-8.7-3.2-12.3ZM8.7 14.5c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg>
+            Unirme a la comunidad <span aria-hidden="true">→</span>
+          </a>
+          <a class="button secondary" href="#experiencia">Explorar el servidor <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="proof"><span class="proof-dot"></span> Tu próxima gran conversación empieza acá.</div>
+      </div>
+
+      <div class="visual" aria-label="Diseño abstracto con las iniciales del servidor">
+        <div class="orbit"></div>
+        <div class="visual-core">
+          <div class="laurel">✳ &nbsp; ✳ &nbsp; ✳</div>
+          <div class="monogram">D<span style="color:var(--red)">.</span></div>
+          <div class="core-label">PIENSA · ARGUMENTA · EVOLUCIONA</div>
+        </div>
+        <div class="floating float-one"><span class="mini-icon">↗</span><span><b>Argumentos</b><br><span style="color:#968990">con fundamento</span></span></div>
+        <div class="floating float-two"><span class="mini-icon">✦</span><span><b>Nuevas perspectivas</b><br><span style="color:#968990">cada conversación</span></span></div>
+        <div class="floating float-three"><span class="mini-icon">◎</span><span><b>Debate abierto</b></span></div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="experiencia">
+      <div class="section-head reveal">
+        <div><div class="section-kicker">Más que una discusión</div><h2>Las ideas se ponen<br>a prueba acá.</h2></div>
+        <p>No importa si venís a aprender, a defender una postura o a cambiar de opinión. Lo importante es tener algo que decir y argumentos para sostenerlo.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v12H9l-5 4V4Z"/><path d="M8 8h8M8 12h5"/></svg></div>
+          <h3>Debates de todo tipo</h3><p>Filosofía, política, ciencia, tecnología, sociedad y preguntas que no tienen respuestas fáciles.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.5V20"/></svg></div>
+          <h3>Una comunidad activa</h3><p>Encontrá gente con ganas de conversar, contrastar opiniones y compartir ideas sin quedarse en lo superficial.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div>
+          <h3>Respeto ante todo</h3><p>Cuestioná las ideas, no el valor de las personas. La diferencia de opiniones hace mejor el debate.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"/></svg></div>
+          <h3>Siempre algo nuevo</h3><p>Temas para explorar, posturas para desafiar y conversaciones que te dejan pensando incluso después de salir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap manifesto" id="unete">
+      <div class="manifesto-inner reveal">
+        <div class="manifesto-copy">
+          <div class="section-kicker">Tu voz tiene lugar</div>
+          <h2>NO BUSCAMOS QUE PIENSES IGUAL.<br><span>BUSCAMOS QUE PIENSES.</span></h2>
+          <p>Sumate al servidor, presentá tus ideas y conocé personas dispuestas a discutirlas. La próxima conversación memorable puede empezar con vos.</p>
+        </div>
+        <div class="manifesto-action">
+          <a class="button primary" href="https://discord.gg/uCxdbMETf" target="_blank" rel="noopener noreferrer">
+            Entrar a DEBATES <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div class="footer-brand">DEBATES<span style="color:var(--red)">.</span></div>
+      <div>Una idea puede cambiarlo todo.</div>
+      <div class="footer-links"><a href="#concepto">Inicio</a><a href="#experiencia">El servidor</a><a href="https://discord.gg/uCxdbMETf" target="_blank" rel="noopener noreferrer">Discord ↗</a></div>
+    </div>
+  </footer>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
